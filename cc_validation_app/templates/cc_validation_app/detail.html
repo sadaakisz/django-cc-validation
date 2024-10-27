@@ -4,3 +4,5 @@
 <h4>{{ card.cvv }}</h4>
 <h5>{{ card.valid_card }}</h5>
 <h5>{{ card.issuing_network }}</h5>
+<a href="{% url 'cc_validation_app:update' card.id %}">Update Card</a>
+<a href="{% url 'cc_validation_app:delete' card.id %}">Delete Card</a>
