@@ -19,5 +19,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("ccv/", include("cc_validation_app.urls"))
+    path("ccv/", include("cc_validation_app.urls")),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
