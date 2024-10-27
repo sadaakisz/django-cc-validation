@@ -23,7 +23,8 @@ class Card(models.Model):
 
         processed_even_digits = [1+(2*x)%10 if 2*x>=10 else 2*x for x in even_pos_digits]
 
-        return (sum(processed_even_digits) + sum(odd_pos_digits) + verification_digit) % 10 == 0
+        card_validity = (sum(processed_even_digits) + sum(odd_pos_digits) + verification_digit) % 10 == 0
+        return "Valid" if card_validity else "Invalid"
 
     def issuing_network(self):
         # TODO: Implement remaining network checks
