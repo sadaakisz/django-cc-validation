@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
@@ -29,6 +31,20 @@ class CreateView(generic.CreateView):
     def get_success_url(self):
         return reverse("cc_validation_app:index")
 
+def validate(request, card_str):
+    # https://stackoverflow.com/a/17337613
+    plain_str = re.sub('[^0-9]', '', card_str)
+    verification_digit = int(plain_str[-1])
+    rev_str = "".join(reversed(plain_str))
+    # 1 offset because of the verification digit
+    even_pos_digits = [int(rev_str[i]) for i in range(len(rev_str)) if int(i)%2==1]
+    odd_pos_digits = [int(rev_str[i]) for i in range(len(rev_str)) if int(i)%2==0 and i!=0]
+
+    processed_even_digits = [1+(2*x)%10 if 2*x>=10 else 2*x for x in even_pos_digits]
+
+    card_validity = (sum(processed_even_digits) + sum(odd_pos_digits) + verification_digit) % 10 == 0
+
+    return HttpResponse(card_validity)
 class UpdateView(generic.UpdateView):
     model = Card
     template_name = "cc_validation_app/update.html"
