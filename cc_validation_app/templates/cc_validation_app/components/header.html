@@ -1,0 +1,11 @@
+{% load static %}
+
+<header class="flex justify-start items-center ml-8">
+    <a href="{% url 'cc_validation_app:index'%}" class="text-3xl font-bold underline">
+        <span class="material-symbols-outlined text-white">
+            {{ top_left_icon }}
+        </span>
+    </a>
+    <img src="{% static 'cc_validation_app/images/ccv-logo.png' %}" alt="CCV Logo" class="size-28 object-contain">
+    </img>
+</header>
