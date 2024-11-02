@@ -22,20 +22,10 @@
         {% else %}
             <p>No cards are available.</p>
         {% endif %}
-        <a href="{% url 'cc_validation_app:create'%}" class="text-3xl font-bold underline">
-            <div class="flex items-center justify-evenly fixed mx-auto inset-x-0 bottom-8 h-16 w-40
-                bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full z-10">
-                <span class="material-symbols-outlined text-white">
-                    add
-                </span>
-                <p class="text-base text-white">New Card</p>
-            </div>
-        </a>
+        {% main_button icon="add" text="New Card" text_color="text-white" href_url="cc_validation_app:create" %}
     </main>
     <footer>
         <div class="w-full h-48 fixed bottom-0 bg-gradient-to-t from-zinc-950 pointer-events-none">
-
-        </div>
     </footer>
   </body>
 </html>

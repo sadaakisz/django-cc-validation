@@ -1,0 +1,11 @@
+{% load tailwind_tags %}
+
+<a href="{% url href_url pk %}" class="font-bold">
+    <div class="flex items-center justify-evenly {{ position }} {{ size }}
+        {{ bg_color }} {{ rounded }} z-10">
+        <span class="material-symbols-outlined {{ text_color }}">
+            {{ icon }}
+        </span>
+        <p class="text-base {{ text_color }}">{{ text }}</p>
+    </div>
+</a>
