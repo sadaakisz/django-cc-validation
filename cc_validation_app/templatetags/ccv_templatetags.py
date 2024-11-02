@@ -4,11 +4,12 @@ register = template.Library()
 components_dir = "cc_validation_app/components/"
 
 @register.inclusion_tag(components_dir + "head.html", takes_context=True)
-def head(context, title):
+def head(context, title, context_id=""):
     request = context.get("request")
 
     return {
         "title": title,
+        "context_id": context_id,
     }
 
 @register.inclusion_tag(components_dir + "header.html", takes_context=True)
