@@ -29,32 +29,3 @@
     </footer>
   </body>
 </html>
-
-
-{% comment %} 
-# Original card
-<a href="{% url 'cc_validation_app:detail' card.id %}">
-    <div class="flex flex-wrap items-center justify-start content-evenly
-        w-auto h-56 p-6 bg-zinc-800 rounded-xl">
-        <div class="w-full h-16"></div>
-        <div class="w-full flex items-center justify-center">
-            <p class="text-3xl font-mono font-semibold">{{ card.number }}</p>
-            <div class="flex-1 flex justify-end">
-                {% if card.valid_card == "Valid" %}
-                <span class="material-symbols-outlined text-green-500">
-                    check
-                </span>
-                {% else %}
-                <span class="material-symbols-outlined text-red-500">
-                    close
-                </span>
-                {% endif %}
-            </div>
-        </div>
-        <p class="w-2/3 text-xl">{{ card.name.upper }}</p>
-        <div class="flex-1 flex justify-end">
-            <p class="text-xl">{{ card.expires | date:"m/y" }}</p>
-        </div>
-    </div>
-</a>
-{% endcomment %}
