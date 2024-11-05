@@ -29,10 +29,9 @@ def index_card(context):
     }
 
 @register.inclusion_tag(components_dir + "main_button.html", takes_context=True)
-def main_button(context, icon, text, text_color, href_url, position="", size="", bg_color="", rounded=""):
+def main_button(context, icon, text, href_url, text_color="text-white", position="", size="h-16 w-40", bg_color="", rounded=""):
     request = context.get("request")
     if not position: position = "fixed mx-auto inset-x-0 bottom-8"
-    if not size: size = "h-16 w-40"
     if not bg_color: bg_color = "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
     if not rounded: rounded = "rounded-full"
     return {
@@ -47,10 +46,9 @@ def main_button(context, icon, text, text_color, href_url, position="", size="",
     }
 
 @register.inclusion_tag(components_dir + "main_button_with_pk.html", takes_context=True)
-def main_button_with_pk(context, icon, text, text_color, href_url, pk, position="", size="", bg_color="", rounded=""):
+def main_button_with_pk(context, icon, text, href_url, pk, text_color="text-white", position="", size="h-16 w-40", bg_color="", rounded=""):
     request = context.get("request")
     if not position: position = "fixed mx-auto inset-x-0 bottom-8"
-    if not size: size = "h-16 w-40"
     if not bg_color: bg_color = "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
     if not rounded: rounded = "rounded-full"
     return {
@@ -63,4 +61,16 @@ def main_button_with_pk(context, icon, text, text_color, href_url, pk, position=
         "size": size,
         "bg_color": bg_color,
         "rounded": rounded,
+    }
+
+@register.inclusion_tag(components_dir + "form_combo.html", takes_context=True)
+def form_combo(context, f_id, label, f_type, name, max_length=""):
+    request = context.get("request")
+
+    return {
+        "f_id": f_id,
+        "label": label,
+        "f_type": f_type,
+        "name": name,
+        "max_length": max_length,
     }

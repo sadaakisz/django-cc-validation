@@ -1,0 +1,7 @@
+{% load tailwind_tags %}
+
+<div class="flex flex-wrap justify-start items-center w-full gap-4">
+    <label for="{{ f_id }}" class="w-full text-2xl font-mono">{{ label }}</label>
+    <input type="{{ f_type }}" name="{{ name }}" maxlength="{{ max_length }}" required="" id="{{ f_id }}"
+        class="w-full h-16 bg-zinc-900 rounded-full font-mono text-xl px-6 focus:ring-0 focus:bg-zinc-800 focus:border-zinc-600">
+</div>
