@@ -64,7 +64,7 @@ def main_button_with_pk(context, icon, text, href_url, pk, text_color="text-whit
     }
 
 @register.inclusion_tag(components_dir + "form_combo.html", takes_context=True)
-def form_combo(context, f_id, label, f_type, name, max_length=""):
+def form_combo(context, f_id, label, f_type, name, value="", max_length=""):
     request = context.get("request")
 
     return {
@@ -72,5 +72,6 @@ def form_combo(context, f_id, label, f_type, name, max_length=""):
         "label": label,
         "f_type": f_type,
         "name": name,
+        "value": value,
         "max_length": max_length,
     }
