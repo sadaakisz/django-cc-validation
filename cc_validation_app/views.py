@@ -47,7 +47,7 @@ def validate(request, card_str):
     return HttpResponse(card_validity)
 class UpdateView(generic.UpdateView):
     model = Card
-    template_name = "cc_validation_app/update.html"
+    template_name = "cc_validation_app/create.html"
     fields = ["number", "expires", "name", "cvv"]
 
     # https://stackoverflow.com/a/52823773
