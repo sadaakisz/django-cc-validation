@@ -18,13 +18,11 @@
                     </span>
                 </div>
                 <p class="w-2/3 text-3xl">{{ card.name.upper }}</p>
-                <div class="flex-1 flex justify-end">
-                    <p class="text-3xl">{{ card.expires | date:"m/y" }}</p>
-                </div>
+                <p class="flex-1 flex justify-end text-3xl">{{ card.expires | date:"m/y" }}</p>
             </div>
             <div class="flex items-center justify-between w-[50rem] mx-auto">
-                {% main_button_with_pk icon="edit" text="Edit Card" text_color="text-white" bg_color="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500" position="relative" href_url="cc_validation_app:update" pk=card.id %}
-                {% main_button_with_pk icon="delete" text="Delete Card" text_color="text-white" bg_color="bg-gradient-to-r from-rose-500 via-red-500 to-orange-500" position="relative" href_url="cc_validation_app:delete" pk=card.id %}
+                {% main_button_with_pk icon="edit" text="Edit Card" bg_color="border-2 border-amber-500" position="relative" href_url="cc_validation_app:update" pk=card.id %}
+                {% main_button_with_pk icon="delete" text="Delete Card" bg_color="border-2 border-rose-500" position="relative" href_url="cc_validation_app:delete" pk=card.id %}
             </div>
         </div>
     </main>
