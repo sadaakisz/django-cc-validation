@@ -31,7 +31,7 @@ class CreateView(generic.CreateView):
     def get_success_url(self):
         return reverse("cc_validation_app:index")
 
-def validate(request, card_str):
+def validate_http(request, card_str):
     # https://stackoverflow.com/a/17337613
     plain_str = re.sub('[^0-9]', '', card_str)
     verification_digit = int(plain_str[-1])

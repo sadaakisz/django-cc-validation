@@ -36,7 +36,7 @@
 
         if (cardNumber.length >= 13) {
             try {
-                const response = await fetch(`/ccv/validate/${cardNumber}`);
+                const response = await fetch(`/ccv/validate_http/${cardNumber}`);
                 const result = await response.text();
 
                 previewElement.textContent = result === "True" ? "check" : "close";
