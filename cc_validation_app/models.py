@@ -10,7 +10,11 @@ class Card(models.Model):
     cvv = models.IntegerField(("security code"))
 
     def __str__(self):
-        return self.number
+        plain_str = re.sub('[^0-9]', '', self.number)
+        return_str_list = [plain_str[i:i+4] for i in range(0, len(plain_str), 4)]
+        return_str = "-".join(return_str_list)
+        print(return_str)
+        return return_str
 
     def valid_card(self):
         # https://stackoverflow.com/a/17337613
