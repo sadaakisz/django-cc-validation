@@ -1,0 +1,48 @@
+{% load ccv_templatetags %}
+{% load tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    {% head title="Validate Card" %}
+    <body class="bg-zinc-950 text-neutral-100">
+        {% header top_left_icon="arrow_back"%}
+        <main class="flex justify-center items-center absolute inset-0 min-h-screen w-full -z-10">
+            <form method="post" class="w-1/3 min-w-96 grid grid-cols-1 gap-8 mt-8">{% csrf_token %}
+                <div class="flex flex-wrap justify-start items-center w-full gap-4">
+                    <div class="flex justify-start items-center w-full relative">
+                        <input type="text" name="{{ form.number.name }}" maxlength="23" required="" id="id_number" value="{{ form.number.value|default_if_none:'' }}"
+                            class="w-full h-16 bg-zinc-900 rounded-full font-mono text-xl px-6 focus:ring-0 focus:bg-zinc-800 focus:border-zinc-600" oninput="showCardNumber()">
+                        <span id="card-number-preview" class="material-symbols-outlined grow absolute right-4">
+                    </div>
+                </div>
+            </form>
+        </main>
+        <footer>
+        </footer>
+    </body>
+</html>
+<script>
+    async function showCardNumber() {
+        const cardNumber = document.getElementById("id_number").value;
+        const previewElement = document.getElementById("card-number-preview");
+
+        if (cardNumber.length >= 13) {
+            try {
+                const response = await fetch(`/ccv/validate_http/${cardNumber}`);
+                const result = await response.text();
+
+                previewElement.textContent = result === "True" ? "check" : "close";
+                previewElement.classList.toggle("text-green-500", result === "True");
+                previewElement.classList.toggle("text-red-500", result === "False");
+
+                if (result !== "True" && result !== "False") {
+                    previewElement.textContent = "Non Binary, check create.html";
+                }
+            } catch (error) {
+                previewElement.textContent = error;
+            }
+        } else {
+            previewElement.textContent = "";
+        }
+    }
+</script>
