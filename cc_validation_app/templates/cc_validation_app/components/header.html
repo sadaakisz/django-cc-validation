@@ -1,7 +1,7 @@
 {% load static %}
 
 <header class="flex justify-start items-center ml-8">
-    <a href={% url href_url %} class="text-3xl">
+    <a href={% if top_left_icon == "arrow_back" %} "javascript:history.go(-1)" {% else %} {% url href_url %} {% endif %} class="text-3xl">
         <span class="material-symbols-outlined text-white">
             {{ top_left_icon }}
         </span>
