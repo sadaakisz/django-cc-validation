@@ -1,3 +1,4 @@
+{% load static %}
 {% load ccv_templatetags %}
 {% load tailwind_tags %}
 
@@ -9,16 +10,21 @@
     <main class="flex justify-center items-center absolute inset-0 min-h-screen w-full -z-10">
         <div class="grid grid-cols-1 gap-6 w-full">
             <div class="flex flex-wrap items-center justify-start content-evenly
-            aspect-[27/17] h-[32rem] m-8 mx-auto p-10 bg-zinc-800 rounded-3xl pt-64">
-                <p class="text-6xl font-mono font-semibold">{{ card.number }}</p>
-                <div class="flex-1 flex justify-end">
-                    <span class="material-symbols-outlined {% if card.valid_card == "Valid" %} text-green-500 {% else %} text-red-500 {% endif %}"
-                    style="font-size: 3.75rem">
-                        {% if card.valid_card == "Valid" %} check {% else %} close {% endif %}
-                    </span>
+            aspect-[27/17] h-[32rem] m-8 mx-auto p-10 rounded-3xl pt-64 relative" style="background: url(/static/cc_validation_app/images/dark-gradient.png); background-size: cover">
+                <div class="aspect-[27/17] h-[32rem] bg-zinc-950 absolute -inset-2 opacity-80 rounded-br-3xl">
+
                 </div>
-                <p class="w-2/3 text-3xl">{{ card.name.upper }}</p>
-                <p class="flex-1 flex justify-end text-3xl">{{ card.expires | date:"m/y" }}</p>
+                <div class="flex flex-wrap items-center justify-start content-evenly gap-8 z-10">
+                    <p class="text-6xl font-mono font-semibold">{{ card.number }}</p>
+                    <div class="flex-1 flex justify-end">
+                        <span class="material-symbols-outlined {% if card.valid_card == "Valid" %} text-green-500 {% else %} text-red-500 {% endif %}"
+                        style="font-size: 3.75rem">
+                            {% if card.valid_card == "Valid" %} check {% else %} close {% endif %}
+                        </span>
+                    </div>
+                    <p class="w-2/3 text-3xl font-mono">{{ card.name.upper }}</p>
+                    <p class="flex-1 flex justify-end text-3xl font-mono">{{ card.expires | date:"m/y" }}</p>
+                </div>
             </div>
             <div class="flex items-center justify-between w-[50rem] mx-auto">
                 {% main_button_with_pk icon="edit" text="Edit Card" bg_color="border-2 border-amber-500" position="relative" href_url="cc_validation_app:update" pk=card.id %}
