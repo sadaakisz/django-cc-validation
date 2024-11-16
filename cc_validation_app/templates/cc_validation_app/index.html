@@ -1,8 +1,10 @@
 {% comment %} <head>
 <script src="https://cdn.tailwindcss.com"></script>
 </head> {% endcomment %}
+
 {% load ccv_templatetags %}
 {% load tailwind_tags %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +13,7 @@
     {% header top_left_icon="apps" href_url="cc_validation_app:validate"%}
     <main class="flex justify-center items-center">
         {% if card_list %}
-            <div class="grid grid-cols-1 gap-4">
+            <div class="grid grid-cols-1 gap-4 mt-6">
                 {% for card in card_list %}
                     <a href="{% url 'cc_validation_app:detail' card.id %}">
                         {% index_card %}
